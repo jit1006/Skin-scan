@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DermAI - Skin Disease Detector</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Background Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
+    <div id="cursor-trail"></div>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="logo-container">
+                <!-- <div class="pulse-ring"></div> -->
+                <!-- <div class="logo-icon">AI</div> -->
+            </div>
+            <h1 class="glow-text">Skin Scan</h1>
+            <p>Advanced Skin Disease Detector</p>
+        </header>
+
+        <!-- Upload Zone -->
+        <section class="upload-section">
+            <div class="glass-card" id="upload-card">
+                <div class="upload-zone" id="drop-zone">
+                    <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg" hidden>
+                    <div class="upload-content" id="upload-content">
+                        <div class="upload-icon-container">
+                            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="17 8 12 3 7 8" />
+                                <line x1="12" y1="3" x2="12" y2="15" />
+                            </svg>
+                        </div>
+                        <h3>Drag & Drop</h3>
+                        <p>or click to browse</p>
+                    </div>
+                    <div class="preview-container hidden" id="preview-container">
+                        <img id="image-preview" src="" alt="Skin sample preview">
+                        <div class="file-info">
+                            <span id="file-name">filename.jpg</span>
+                            <span id="file-size">2 MB</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="cta-button disabled" id="analyze-btn" disabled>
+                    <span class="btn-text">Analyze Skin</span>
+                    <div class="ripple-container"></div>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loading-overlay">
+        <div class="scanline"></div>
+        <div class="lottie-container" id="lottie-loader"></div>
+        <div class="loading-content">
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            <p class="loading-text" id="loading-text">Scanning pixels...</p>
+        </div>
+    </div>
+
+    <!-- Results Card -->
+    <div class="results-overlay hidden" id="results-overlay">
+        <div class="results-card glass-card">
+            <div class="results-header">
+                <h2>Analysis Complete</h2>
+                <button class="close-btn" id="close-results">&times;</button>
+            </div>
+            
+            <div class="results-body">
+                <div class="diagnosis-block">
+                    <h3 class="glow-text disease-name" id="res-disease">Melanoma</h3>
+                    <div class="severity-badge high" id="res-severity">High Risk</div>
+                </div>
+
+                <div class="confidence-gauge">
+                    <svg viewBox="0 0 100 50" class="gauge-svg">
+                        <path class="gauge-bg" d="M 10 50 A 40 40 0 0 1 90 50" />
+                        <path class="gauge-fill" id="gauge-fill" d="M 10 50 A 40 40 0 0 1 90 50" />
+                    </svg>
+                    <div class="confidence-value">
+                        <span id="res-confidence">0</span>%
+                    </div>
+                    <p class="confidence-label">AI Confidence</p>
+                </div>
+
+                <div class="details-block">
+                    <h4>Description</h4>
+                    <p id="res-desc">Loading description...</p>
+                    
+                    <h4>Recommendation</h4>
+                    <p class="recommendation" id="res-rec">Loading recommendation...</p>
+                </div>
+            </div>
+
+            <div class="results-footer">
+                <button class="outline-button" id="scan-another-btn">Scan Another</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/uploader.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
