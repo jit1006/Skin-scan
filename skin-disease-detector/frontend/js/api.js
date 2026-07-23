@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             // Note: Since backend is running locally on port 5000:
-            const response = await fetch("http://127.0.0.1:5000/api/predict", {
+            const response = await fetch("https://skin-disease-api-ejjx.onrender.com/api/predict", {
                 method: "POST",
                 body: formData
             });
