@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("image", selectedFile);
 
         try {
-            // Note: Since backend is running locally on port 5000:
+            // Note: Since backend is running locally on port 5000:in the local
             const response = await fetch("https://skin-disease-api-ejjx.onrender.com/api/predict", {
                 method: "POST",
                 body: formData
